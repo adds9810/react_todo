@@ -4,7 +4,9 @@ import reportWebVitals from './reportWebVitals'
 
 import App from './App'
 
-ReactDOM.render(
+const rootNode = document.getElementById('root')
+
+ReactDOM.createRoot(rootNode).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
