@@ -1,7 +1,17 @@
-const List = () => {
+import Lists from './Lists'
+import Button from 'react-bootstrap/Button'
+
+const List = (props) => {
+  const {Lists} = props
   return (
     <div>
-      <div>등록된 할일이 없습니다.</div>
+      <Lists/>
+      <div className="list_option">
+        <label><input type="checkbox"/>전체선택</label>
+        <Button type="button" variant="secondary">
+          전체삭제
+        </Button>
+      </div>
     </div>
   )
 }

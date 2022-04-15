@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import Button from 'react-bootstrap/Button'
-const Form = () => {
+
+const Form = (props) => {
   const [formValues, setformValues] = useState({
     txt: '',
+    complete:false,
   })
   const handleInputChange = (event) => {
     setformValues({
@@ -13,9 +15,13 @@ const Form = () => {
   const handleSubmit = () => {
     if (formValues.txt === '') {
       window.alert('할 일을 등록해주세요!')
-    } else {
-      window.alert(formValues.txt)
-    }
+      return
+    } 
+    window.alert(formValues.txt)
+    props.onAddTodo({
+      id:Date.now(),
+      ...formValues,
+    })
   }
   return (
     <div>
@@ -29,10 +35,6 @@ const Form = () => {
       />
       <Button type="button" variant="primary" onClick={handleSubmit}>
         등록
-      </Button>
-
-      <Button type="button" variant="secondary">
-        전체삭제
       </Button>
     </div>
   )
