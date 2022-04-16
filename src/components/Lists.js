@@ -1,6 +1,9 @@
-const Lists = () =>{
+const Lists = (props) =>{
+  const {txt, complete} = props
     return (
-      <div>등록된 할일이 없습니다.</div>
+      <div>
+        <label checked={complete}>{txt}</label>
+      </div>
     )
 }
 

@@ -2,10 +2,19 @@ import Lists from './Lists'
 import Button from 'react-bootstrap/Button'
 
 const List = (props) => {
-  const {Lists} = props
+  const {list} = props
   return (
     <div>
-      <Lists/>
+      <div className="list">
+        {list.map((lists) => {
+          return(
+            <Lists 
+              key={lists.id}
+
+            />
+          )
+        })}
+      </div>
       <div className="list_option">
         <label><input type="checkbox"/>전체선택</label>
         <Button type="button" variant="secondary">

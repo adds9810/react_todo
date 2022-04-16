@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 const Form = (props) => {
   const [formValues, setformValues] = useState({
     txt: '',
-    complete:false,
+    complete:'',
   })
   const handleInputChange = (event) => {
     setformValues({
