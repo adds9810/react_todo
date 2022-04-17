@@ -18,7 +18,7 @@ const Form = (props) => {
       return
     } 
     window.alert(formValues.txt)
-    props.onAddTodo({
+    props.onAddList({
       id:Date.now(),
       ...formValues,
     })
