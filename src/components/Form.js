@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 const Form = (props) => {
   const [formValues, setformValues] = useState({
     txt: '',
-    complete:'',
+    complete: false,
   })
   const handleInputChange = (event) => {
     setformValues({
@@ -16,10 +16,9 @@ const Form = (props) => {
     if (formValues.txt === '') {
       window.alert('할 일을 등록해주세요!')
       return
-    } 
-    window.alert(formValues.txt)
+    }
     props.onAddList({
-      id:Date.now(),
+      id: Date.now(),
       ...formValues,
     })
   }
