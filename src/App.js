@@ -17,11 +17,12 @@ function App() {
     setLists(newLists)
   }
   const handleUpdate = () => {}
-  const handleRemove = () => {
-    window.location.reload()
-    console.log(JSON.parse(window.localStorage.getItem('LISTS') || '[]'))
+  const handleRemove = (id) => {
+    if (id == 'all') {
+      window.localStorage.removeItem('LISTS')
+    }
+    //window.location.reload()
   }
-  console.log(JSON.parse(window.localStorage.getItem('LISTS') || '[]'))
   return (
     <div id="root">
       <div className="container">

@@ -8,8 +8,7 @@ const Lists = (props) => {
   const delectAllTodo = () => {
     const delectYN = window.confirm('정말로 삭제 하시겠습니까?')
     if (delectYN) {
-      window.localStorage.removeItem('LISTS')
-      onRemove()
+      onRemove('all')
     }
   }
   return (
@@ -19,6 +18,7 @@ const Lists = (props) => {
           return (
             <List
               key={list.id}
+              id={list.id}
               txt={list.txt}
               complete={list.complete}
               onUpdate={onUpdate}
