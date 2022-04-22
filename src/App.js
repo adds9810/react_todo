@@ -5,7 +5,7 @@ import './assets/css/app.css'
 import Form from './components/Form'
 import Lists from './components/Lists'
 
-function App() {
+const App = () => {
   const [lists, setLists] = useState(() => {
     return JSON.parse(window.localStorage.getItem('LISTS') || '[]')
   })
@@ -18,9 +18,13 @@ function App() {
   }
   const handleUpdate = () => {}
   const handleRemove = (id) => {
+    let changeArr
     if (id == 'all') {
-      window.localStorage.removeItem('LISTS')
+      changeArr = []
+    } else {
+      changeArr = lists.filter((list) => list.id !== id)
     }
+    setLists(changeArr)
     //window.location.reload()
   }
   return (
