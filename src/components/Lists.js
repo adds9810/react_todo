@@ -4,7 +4,9 @@ import Button from 'react-bootstrap/Button'
 const Lists = (props) => {
   const { lists, onUpdate, onRemove } = props
 
-  onUpdate()
+  const checkAll = () => {
+    onUpdate()
+  }
   const delectAllTodo = () => {
     const delectYN = window.confirm('정말로 삭제 하시겠습니까?')
     if (delectYN) {
@@ -14,11 +16,12 @@ const Lists = (props) => {
   return (
     <div>
       <ul className="list">
-        {lists.map((list) => {
+        {lists.map((list, index) => {
           return (
             <List
               key={list.id}
               id={list.id}
+              num={index}
               txt={list.txt}
               complete={list.complete}
               onUpdate={onUpdate}
@@ -28,8 +31,8 @@ const Lists = (props) => {
         })}
       </ul>
       <div className="list_option">
-        <label>
-          <input type="checkbox" />
+        <label htmlFor="all">
+          <input type="checkbox" name="all" id="all" onChange={checkAll} />
           전체선택
         </label>
         <Button type="button" variant="secondary" onClick={delectAllTodo}>

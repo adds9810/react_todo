@@ -1,5 +1,5 @@
 const List = (props) => {
-  const { id, txt, complete, onUpdate, onRemove } = props
+  const { id, txt, num, complete, onUpdate, onRemove } = props
   const editTodo = () => {
     onUpdate()
   }
@@ -9,10 +9,10 @@ const List = (props) => {
       onRemove(num)
     }
   }
-  const chkFun = (id, e) => {
+  const chkFun = (id, num, e) => {
     const updateVal = 'chk'
     const chk = e.target.checked
-    onUpdate(updateVal, id, chk)
+    onUpdate(updateVal, id, num, chk)
   }
   return (
     <li>
@@ -21,11 +21,11 @@ const List = (props) => {
           type="checkbox"
           name={id}
           id={id}
-          data-num=""
+          data-num={num}
           checked={complete}
-          onChange={(e) => chkFun(id, e)}
+          onChange={(e) => chkFun(id, num, e)}
         />
-        {txt}
+        {num + 1}. {txt}
       </label>{' '}
       <a className="edit" onClick={() => editTodo(id)}>
         수정하기
