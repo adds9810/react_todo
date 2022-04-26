@@ -16,7 +16,14 @@ const App = () => {
     const newLists = [...lists, list]
     setLists(newLists)
   }
-  const handleUpdate = () => {}
+  const handleUpdate = (cate, id, value) => {
+    if (cate == 'chk') {
+      console.log(lists)
+      if (lists[id]['complete'] == value) {
+        window.alert(id, value)
+      }
+    }
+  }
   const handleRemove = (id) => {
     let changeArr
     if (id == 'all') {

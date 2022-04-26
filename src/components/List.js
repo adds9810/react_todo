@@ -10,8 +10,9 @@ const List = (props) => {
     }
   }
   const chkFun = (id, e) => {
-    window.alert(e.target.checked)
-    window.alert(id)
+    const updateVal = 'chk'
+    const chk = e.target.checked
+    onUpdate(updateVal, id, chk)
   }
   return (
     <li>
@@ -20,6 +21,7 @@ const List = (props) => {
           type="checkbox"
           name={id}
           id={id}
+          data-num=""
           checked={complete}
           onChange={(e) => chkFun(id, e)}
         />

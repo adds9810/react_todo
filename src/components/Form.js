@@ -16,11 +16,12 @@ const Form = (props) => {
     if (formValues.txt === '') {
       window.alert('할 일을 등록해주세요!')
       return
+    } else {
+      props.onAddList({
+        id: Date.now(),
+        ...formValues,
+      })
     }
-    props.onAddList({
-      id: Date.now(),
-      ...formValues,
-    })
   }
   return (
     <div>
