@@ -9,10 +9,10 @@ const List = (props) => {
       onRemove(num)
     }
   }
-  const chkFun = (id, num, e) => {
+  const chkFun = (num, e) => {
     const updateVal = 'chk'
     const chk = e.target.checked
-    onUpdate(updateVal, id, num, chk)
+    onUpdate(updateVal, num, chk)
   }
   return (
     <li>
@@ -23,13 +23,13 @@ const List = (props) => {
           id={id}
           data-num={num}
           checked={complete}
-          onChange={(e) => chkFun(id, num, e)}
-        />
+          onChange={(e) => chkFun(num, e)}
+        />{' '}
         {num + 1}. {txt}
       </label>{' '}
       <a className="edit" onClick={() => editTodo(id)}>
         수정하기
-      </a>
+      </a>{' '}
       <a className="delect" onClick={() => delectTodo(id)}>
         삭제하기
       </a>

@@ -12,26 +12,30 @@ const App = () => {
   useEffect(() => {
     window.localStorage.setItem('LISTS', JSON.stringify(lists))
   }, [lists])
-  const listLeng = lists.length
   const handleAddList = (list) => {
     const newLists = [...lists, list]
     setLists(newLists)
   }
-  const handleUpdate = (cate, id, num, value) => {
+  const handleUpdate = (cate, num, value) => {
     let editId
     let editTxt
     let editComplete
     let editList
-    if (cate == 'chk' && editComplete != value) {
-      editId = id
-      editTxt = lists[num]['txt']
-      editComplete = value
-      console.log('true')
-      lists.splice(num, 1, {
-        id: editId,
-        txt: editTxt,
-        complete: editComplete,
-      })
+    if (cate == 'chk') {
+      if (num == 'all') {
+        lists.map((list) => {
+          list.complete = value
+        })
+      } else if (editComplete != value) {
+        editId = lists[num]['id']
+        editTxt = lists[num]['txt']
+        editComplete = value
+        lists.splice(num, 1, {
+          id: editId,
+          txt: editTxt,
+          complete: editComplete,
+        })
+      }
       editList = [...lists]
       setLists(editList)
     } else {
@@ -52,7 +56,7 @@ const App = () => {
     <div>
       <div className="container">
         <h1>todo list</h1>
-        <Form listLeng={listLeng} onAddList={handleAddList} />
+        <Form onAddList={handleAddList} />
         <Lists lists={lists} onUpdate={handleUpdate} onRemove={handleRemove} />
       </div>
     </div>
