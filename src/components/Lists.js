@@ -2,7 +2,7 @@ import List from './List'
 import Button from 'react-bootstrap/Button'
 
 const Lists = (props) => {
-  const { lists, onUpdate, onRemove } = props
+  const { lists, checkAllVal, onUpdate, onRemove } = props
 
   const checkAll = (e) => {
     const updateVal = 'chk'
@@ -39,6 +39,7 @@ const Lists = (props) => {
             type="checkbox"
             name="chkAll"
             id="chkAll"
+            checked={checkAllVal}
             onChange={(e) => checkAll(e)}
           />
           전체선택
