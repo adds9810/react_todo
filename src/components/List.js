@@ -9,7 +9,7 @@ const List = (props) => {
       onRemove(num)
     }
   }
-  const chkFun = (num, e) => {
+  const chkFun = (rowIndex, e) => {
     const updateVal = 'chk'
     const chk = e.target.checked
     onUpdate(updateVal, num, chk)
