@@ -3,16 +3,15 @@ const List = (props) => {
   const editTodo = () => {
     onUpdate()
   }
-  const delectTodo = (num) => {
-    const delectYN = window.confirm('정말로 삭제 하시겠습니까?')
-    if (delectYN) {
-      onRemove(num)
+  const delectTodo = (rowIndex) => {
+    if (window.confirm('정말로 삭제 하시겠습니까?')) {
+      onRemove(rowIndex)
     }
   }
   const chkFun = (rowIndex, e) => {
     const updateVal = 'chk'
     const chk = e.target.checked
-    onUpdate(updateVal, num, chk)
+    onUpdate(updateVal, rowIndex, chk)
   }
   return (
     <li>
@@ -30,7 +29,7 @@ const List = (props) => {
       <a className="edit" onClick={() => editTodo(id)}>
         수정하기
       </a>{' '}
-      <a className="delect" onClick={() => delectTodo(id)}>
+      <a className="delete" onClick={() => delectTodo(id)}>
         삭제하기
       </a>
     </li>
