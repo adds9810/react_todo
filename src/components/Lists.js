@@ -2,7 +2,7 @@ import List from './List'
 import Button from 'react-bootstrap/Button'
 
 const Lists = (props) => {
-  const { lists, checkAllVal, onUpdate, onRemove } = props
+  const { lists, checkAllVal, setLists, onUpdate, onRemove } = props
 
   const checkAll = (e) => {
     const updateVal = 'chk'
@@ -10,10 +10,16 @@ const Lists = (props) => {
     const allNum = 'all'
     onUpdate(updateVal, allNum, chk)
   }
-  const delectAllTodo = () => {
+  const delectChoiceTodo = () => {
     const delectYN = window.confirm('정말로 삭제 하시겠습니까?')
+    const chkAllBox = document.getElementById('chkAll').checked
     if (delectYN) {
-      onRemove('all')
+      if (chkAllBox == true) {
+        onRemove('all')
+      } else {
+        const chkIdArr = lists.filter((list) => list.complete !== true)
+        setLists(chkIdArr)
+      }
     }
   }
   return (
@@ -39,13 +45,13 @@ const Lists = (props) => {
             type="checkbox"
             name="chkAll"
             id="chkAll"
-            checked={checkAllVal}
+            checked={checkAllVal.checked}
             onChange={(e) => checkAll(e)}
           />
           전체선택
         </label>
-        <Button type="button" variant="secondary" onClick={delectAllTodo}>
-          전체삭제
+        <Button type="button" variant="secondary" onClick={delectChoiceTodo}>
+          선택삭제
         </Button>
       </div>
     </div>

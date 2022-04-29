@@ -9,23 +9,20 @@ const App = () => {
   const [lists, setLists] = useState(() => {
     return JSON.parse(window.localStorage.getItem('LISTS') || '[]')
   })
-  const [checkAllVal, setCheckAll] = useState(() => {
-    let changeChkAll
-    for (let i = 0; i < lists.length; i++) {
-      if (lists[i]['complete'] != true) {
-        changeChkAll = ''
-        break
-      }
-      changeChkAll = 'checked'
-    }
-    return changeChkAll
+  const [checkAllVal, setCheckAll] = useState({
+    checked: '',
   })
   useEffect(() => {
+    chkAllAction()
     window.localStorage.setItem('LISTS', JSON.stringify(lists))
   }, [lists])
   const handleAddList = (list) => {
     const newLists = [...lists, list]
     setLists(newLists)
+  }
+  const handleChange = (value) => {
+    console.log(value)
+    setCheckAll({ checked: value })
   }
   const handleUpdate = (cate, num, value) => {
     let editId
@@ -37,7 +34,7 @@ const App = () => {
         lists.map((list) => {
           list.complete = value
         })
-        setCheckAll()
+        setCheckAll(value)
       } else if (editComplete != value) {
         editId = lists[num]['id']
         editTxt = lists[num]['txt']
@@ -50,11 +47,24 @@ const App = () => {
       }
       editList = [...lists]
       setLists(editList)
-
-      setCheckAll()
     } else {
       //editComplete = lists[id]['complete']
     }
+  }
+  const chkAllAction = () => {
+    let changeChkAll
+    if (lists.length <= 0) {
+      changeChkAll = ''
+    } else {
+      for (let i = 0; i < lists.length; i++) {
+        if (lists[i]['complete'] != true) {
+          changeChkAll = ''
+          break
+        }
+        changeChkAll = 'checked'
+      }
+    }
+    handleChange(changeChkAll)
   }
   const handleRemove = (id) => {
     let changeArr
@@ -74,6 +84,7 @@ const App = () => {
         <Lists
           lists={lists}
           checkAllVal={checkAllVal}
+          setLists={setLists}
           onUpdate={handleUpdate}
           onRemove={handleRemove}
         />
