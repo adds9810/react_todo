@@ -18,7 +18,7 @@ const Lists = (props) => {
     setChkAllBox(checkAllVal)
     onUpdate(updateVal, allNum, chk)
   }
-  const delectChoiceTodo = () => {
+  const deleteChoiceTodo = () => {
     if (window.confirm('정말로 삭제 하시겠습니까?')) {
       if (chkAllBox == true) {
         onRemove('all')
@@ -55,7 +55,7 @@ const Lists = (props) => {
           />
           전체선택
         </label>
-        <Button type="button" variant="secondary" onClick={delectChoiceTodo}>
+        <Button type="button" variant="secondary" onClick={deleteChoiceTodo}>
           선택삭제
         </Button>
       </div>

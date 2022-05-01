@@ -3,7 +3,7 @@ const List = (props) => {
   const editTodo = () => {
     onUpdate()
   }
-  const delectTodo = (rowIndex) => {
+  const deleteTodo = (rowIndex) => {
     if (window.confirm('정말로 삭제 하시겠습니까?')) {
       onRemove(rowIndex)
     }
@@ -29,7 +29,7 @@ const List = (props) => {
       <a className="edit" onClick={() => editTodo(id)}>
         수정하기
       </a>{' '}
-      <a className="delect" onClick={() => delectTodo(id)}>
+      <a className="delete" onClick={() => deleteTodo(id)}>
         삭제하기
       </a>
     </li>
