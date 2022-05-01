@@ -9,68 +9,55 @@ const App = () => {
   const [lists, setLists] = useState(() => {
     return JSON.parse(window.localStorage.getItem('LISTS') || '[]')
   })
-  const [checkAllVal, setCheckAll] = useState({
-    checked: '',
-  })
+  const [checkAllVal, setCheckAll] = useState(false)
   useEffect(() => {
-    chkAllAction()
     window.localStorage.setItem('LISTS', JSON.stringify(lists))
+    chkAllAction()
   }, [lists])
   const handleAddList = (list) => {
-    const newLists = [...lists, list]
-    setLists(newLists)
+    setLists([...lists, list])
   }
   const handleChange = (value) => {
-    console.log(value)
-    setCheckAll({ checked: value })
+    setCheckAll(value)
   }
-  const handleUpdate = (cate, num, value) => {
-    let editId
-    let editTxt
-    let editComplete
-    let editList
-    if (cate == 'chk') {
-      if (num == 'all') {
+  const handleUpdate = (cate, rowIndex, value) => {
+    if (cate === 'chk') {
+      if (rowIndex === 'all') {
         lists.map((list) => {
           list.complete = value
         })
-        setCheckAll(value)
-      } else if (editComplete != value) {
-        editId = lists[num]['id']
-        editTxt = lists[num]['txt']
-        editComplete = value
-        lists.splice(num, 1, {
-          id: editId,
-          txt: editTxt,
-          complete: editComplete,
-        })
+      } else {
+        const editRowData = {
+          id: lists[rowIndex]['id'],
+          txt: lists[rowIndex]['txt'],
+          complete: value,
+        }
+        if (lists[rowIndex]['complete'] !== value) {
+          lists.splice(rowIndex, 1, editRowData)
+        }
       }
-      editList = [...lists]
-      setLists(editList)
+      setLists([...lists])
     } else {
       //editComplete = lists[id]['complete']
     }
   }
   const chkAllAction = () => {
-    let changeChkAll
-    if (lists.length <= 0) {
-      changeChkAll = ''
-    } else {
-      for (let i = 0; i < lists.length; i++) {
-        if (lists[i]['complete'] != true) {
-          changeChkAll = ''
+    let changeChkAll = false
+    let listLength = lists.length || 0
+    if (listLength > 0) {
+      for (let row = 0; row < listLength; row++) {
+        if (lists[row]['complete'] !== true) {
+          changeChkAll = false
           break
         }
-        changeChkAll = 'checked'
+        changeChkAll = true
       }
     }
     handleChange(changeChkAll)
   }
   const handleRemove = (id) => {
-    let changeArr
-    if (id == 'all') {
-      changeArr = []
-    } else {
+    let changeArr = []
+    if (id !== 'all') {
       changeArr = lists.filter((list) => list.id !== id)
     }
     setLists(changeArr)
