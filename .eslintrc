@@ -21,10 +21,10 @@
     "node": true
   },
   "extends": [
+    "airbnb",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "airbnb"
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
@@ -36,6 +36,7 @@
       {
         "endOfLine": "auto"
       }
-    ]
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
 }
