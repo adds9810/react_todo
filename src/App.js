@@ -61,7 +61,6 @@ const App = () => {
             changeArr = lists.filter((list) => list.id !== id);
         }
         setLists(changeArr);
-        //window.location.reload()
     };
     return (
         <div>
